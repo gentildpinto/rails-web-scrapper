@@ -9,7 +9,7 @@ class Api::V1::ScrapperController < ApplicationController
             endpoints: [{
                 searchMovies: "api/v1/search/:title"
             }],
-            link_of_project: "",
+            link_of_project: "https://github.com/GentilPinto/rails-web-scrapper",
             message: "Don't to forget put a star ;)"
         }
         render json: @response, status: :ok
@@ -25,11 +25,11 @@ class Api::V1::ScrapperController < ApplicationController
 
     private
     def get_param
-        params.require(:title)
+        return ((params.require(:title)).to_s).gsub(" ", "%20")
     end
 
     def getMovies
-        source = Nokogiri::HTML(URI('https://yts.mx/browse-movies/'+params.require(:title)+'/all/all/0/latest/0/all').open())
+        source = Nokogiri::HTML(URI('https://yts.mx/browse-movies/'+get_param+'/all/all/0/latest/0/all').open())
         arrayMovies = []
 
         source.search('div.row div.browse-movie-wrap').each do |moviesContainer|
