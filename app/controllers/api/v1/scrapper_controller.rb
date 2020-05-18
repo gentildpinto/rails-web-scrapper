@@ -17,7 +17,6 @@ class Api::V1::ScrapperController < ApplicationController
 
     def searchMovies
         @response = {
-            message: "Filmes encontrados",
             data: getMovies
         }
         render json: @response, status: :ok
@@ -29,30 +28,34 @@ class Api::V1::ScrapperController < ApplicationController
     end
 
     def getMovies
-        source = Nokogiri::HTML(URI('https://yts.mx/browse-movies/'+get_param+'/all/all/0/latest/0/all').open())
-        arrayMovies = []
+        begin
+            source = Nokogiri::HTML(URI('https://yts.mx/browse-movies/'+get_param+'/all/all/0/latest/0/all').open())
+            arrayMovies = []
 
-        source.search('div.row div.browse-movie-wrap').each do |moviesContainer|
-            movie = {}
+            source.search('div.row div.browse-movie-wrap').each do |moviesContainer|
+                movie = {}
 
-            moviesContainer.search('a.browse-movie-link').each do |movieLinkNode|
-                movie[:"movie_link"] = movieLinkNode["href"]
-                movieLinkNode.search('img.img-responsive').each do |imgMovieNode|
-                    movie[:"img_movie_link"] = imgMovieNode["src"]
+                moviesContainer.search('a.browse-movie-link').each do |movieLinkNode|
+                    movie[:"movie_link"] = movieLinkNode["href"]
+                    movieLinkNode.search('img.img-responsive').each do |imgMovieNode|
+                        movie[:"img_movie_link"] = imgMovieNode["src"]
+                    end
                 end
+
+                moviesContainer.search('div.browse-movie-bottom').each do |movieDetails|
+                    movieDetails.search('a.browse-movie-title').each do |movieTitle|
+                        movie[:"movie_title"] = (movieTitle.children).to_s
+                    end
+
+                    movieDetails.search('div.browse-movie-year').each do |movieYear|
+                        movie[:"movie_year"] = (movieYear.children).to_s
+                    end
+                end
+                arrayMovies.push(movie)
             end
-
-            moviesContainer.search('div.browse-movie-bottom').each do |movieDetails|
-                movieDetails.search('a.browse-movie-title').each do |movieTitle|
-                    movie[:"movie_title"] = (movieTitle.children).to_s
-                end
-
-                movieDetails.search('div.browse-movie-year').each do |movieYear|
-                    movie[:"movie_year"] = (movieYear.children).to_s
-                end
-            end
-            arrayMovies.push(movie)
+            return { message: "Filmes Encontrados!", movies: arrayMovies }
+        rescue SocketError => e
+            return { message: "Ocorreu um erro!" }
         end
-        return arrayMovies
     end
 end
