@@ -1,49 +1,50 @@
 <h1 align="center">
-  WEB SCRAPPER YTS
+  Rails WEB SCRAPPER YTS
 </h1>
 
 <!-- **Demo**: [heroku](https://teste.com) -->
-
-## Tecnologias
-
-Esse projeto foi desenvolvido utilizando: [Ruby on Rails](https://rubyonrails.org/)
-
-## Descrição do projeto
+## :clipboard: Descrição do projeto
 
 > O WEB SCRAPER YTS é um projeto com a finalidade de extrair dados de filmes do site YIFY Torrents - YTS.
 
-## Como Iniciar
+## :computer: Tecnologias
+
+Esse projeto foi desenvolvido utilizando:
+- [Ruby on Rails](https://rubyonrails.org/)
+
+## :rocket: Como Iniciar
 
 - Faça um `git clone` do repositório;
 - Instale todas dependências rodando no terminal o comando `bundle install`;<br>
 - Rode o comando comando no terminal `rails s`;<br>
-- Agora é só se divertir!
+- Agora é só se divertir! :smiley:
 
-### Rotas
+### :triangular_flag_on_post: Rotas
 
 | Metodo   | Rota       | Descrição   |
 | ---   | ---            | ---           |
 | GET   | /api/search/{titulo_do_filme} | Retorna do YTS todos os filmes que correspondem ao título passado no parâmetro. |
 
 
-### In English
+### :gb: In English
 
-## Technologies
-
-This project was developed using: [Ruby on Rails](https://rubyonrails.org/)
-
-## Project description
+## :clipboard: Project description
 
 > WEB SCRAPPER YTS is a project with the purpose of extracting data from films from YIFY Torrents - YTS website.
 
-## Getting Started
+## :computer: Technologies
+
+This project was developed using:
+- [Ruby on Rails](https://rubyonrails.org/)
+
+## :rocket: Getting Started
 
 - Make a `git clone` of the repository;
 - Install all dependencies by running the command `bundle install` on the terminal;<br>
 - Run the command command in the `rails s` on the terminal;<br>
-- Now just have fun!
+- Now just have fun! :smiley:
 
-### Endpoints
+### :triangular_flag_on_post: Endpoints
 
 | Method   | Endpoint       | Description   |
 | ---   | ---            | ---           |
