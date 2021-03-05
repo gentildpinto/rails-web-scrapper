@@ -10,7 +10,7 @@ class Api::V1::ScrapperController < ApplicationController
                 searchMovies: "api/v1/search/:title"
             }],
             link_of_project: "https://github.com/GentilPinto/rails-web-scrapper",
-            message: "Don't to forget put a star ;)"
+            message: "Don't forget to put a star ;)"
         }
         render json: @response, status: :ok
     end
