@@ -17,7 +17,7 @@ gem 'puma', '~> 5.6.8'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.2', require: false
 
-gem 'nokogiri', '~> 1.14.3'
+gem 'nokogiri', '~> 1.16.2'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
